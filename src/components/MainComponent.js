@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import BookDetail from "./organisms/bookDetail";
 import CardGrid from "./organisms/cardsGrid";
@@ -6,6 +6,17 @@ import Library from "./organisms/library";
 
 import Navigation from "./organisms/Navigation";
 const MainComponent = (props) => {
+  const [library, setLibrary] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/library")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setLibrary(data);
+      });
+  }, []);
   const finishBook = (book) => {
     const requestOptions = {
       method: "PUT",
@@ -48,7 +59,8 @@ const MainComponent = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        window.location.reload();
+        setLibrary([...library, data]);
+        console.log(library);
       });
   };
   return (
@@ -63,10 +75,23 @@ const MainComponent = (props) => {
           <Route
             path="/books/:id"
             element={
-              <BookDetail finishBook={finishBook} addToLibrary={addToLibrary} />
+              <BookDetail
+                finishBook={finishBook}
+                addToLibrary={addToLibrary}
+                library={library}
+              />
             }
           />
-          <Route path="/category/enterpreneurship" element={<CardGrid />} />
+          <Route
+            path="/category/enterpreneurship"
+            element={
+              <CardGrid
+                finishBook={finishBook}
+                addToLibrary={addToLibrary}
+                library={library}
+              />
+            }
+          />
         </Routes>
       </div>
     </>

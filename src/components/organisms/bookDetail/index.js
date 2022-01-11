@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const BookDetail = (props) => {
   const [bookDetail, setBookDetail] = useState([]);
-  const [myLibrary, setLibrary] = useState([]);
+
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:8000/books/${id}`)
@@ -12,15 +12,9 @@ const BookDetail = (props) => {
         console.log(data);
         setBookDetail(data);
       });
-    fetch(`http://localhost:8000/library`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setLibrary(data);
-      });
   }, []);
-  let index = myLibrary.map((e) => e.id).indexOf(bookDetail.id);
-  console.log(index);
+  let index = props.library.map((e) => e.id).indexOf(bookDetail.id);
+  console.log(props.library);
   return (
     <>
       <div className="book-header-wrapper">

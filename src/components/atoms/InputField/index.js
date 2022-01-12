@@ -9,7 +9,6 @@ const TextFieldComponent = (props) => (
     label={props.label}
     defaultValue={props.value}
     required={props.required}
-    onChange={props.onChange}
   />
 );
 
@@ -17,7 +16,6 @@ TextFieldComponent.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string,
   required: PropTypes.bool,
-  onChange: PropTypes.func,
 };
 
 TextFieldComponent.defaultProps = {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Router } from "react-router-dom";
 import BookDetail from "./organisms/bookDetail";
 import CardGrid from "./organisms/cardsGrid";
 import Library from "./organisms/library";
@@ -65,46 +65,49 @@ const MainComponent = (props) => {
   };
   return (
     <>
-      <div className="header-container">
-        <Navigation />
-      </div>
-      <div className="header-container">
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <Library finishBook={finishBook} addToLibrary={addToLibrary} />
-            }
-          />
-          <Route
-            path="/library"
-            element={
-              <Library finishBook={finishBook} addToLibrary={addToLibrary} />
-            }
-          />
-          <Route
-            path="/books/:id"
-            element={
-              <BookDetail
-                finishBook={finishBook}
-                addToLibrary={addToLibrary}
-                library={library}
-              />
-            }
-          />
-          <Route
-            path="/category/enterpreneurship"
-            element={
-              <CardGrid
-                finishBook={finishBook}
-                addToLibrary={addToLibrary}
-                library={library}
-              />
-            }
-          />
-        </Routes>
-      </div>
+      <Router>
+        {" "}
+        <div className="header-container">
+          <Navigation />
+        </div>
+        <div className="header-container">
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <Library finishBook={finishBook} addToLibrary={addToLibrary} />
+              }
+            />
+            <Route
+              path="/library"
+              element={
+                <Library finishBook={finishBook} addToLibrary={addToLibrary} />
+              }
+            />
+            <Route
+              path="/books/:id"
+              element={
+                <BookDetail
+                  finishBook={finishBook}
+                  addToLibrary={addToLibrary}
+                  library={library}
+                />
+              }
+            />
+            <Route
+              path="/category/enterpreneurship"
+              element={
+                <CardGrid
+                  finishBook={finishBook}
+                  addToLibrary={addToLibrary}
+                  library={library}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 };

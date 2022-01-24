@@ -70,8 +70,19 @@ const MainComponent = (props) => {
       </div>
       <div className="header-container">
         <Routes>
-          <Route exact path="/" element={<Library />} />
-          <Route path="/library" element={<Library />} />
+          <Route
+            exact
+            path="/"
+            element={
+              <Library finishBook={finishBook} addToLibrary={addToLibrary} />
+            }
+          />
+          <Route
+            path="/library"
+            element={
+              <Library finishBook={finishBook} addToLibrary={addToLibrary} />
+            }
+          />
           <Route
             path="/books/:id"
             element={

@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-
+import ExpenseForm from "./components/Input/ExpenseForm";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(

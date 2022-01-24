@@ -4,11 +4,7 @@ import { render, screen } from "@testing-library/react";
 
 test("renders learn react link", () => {
   render(
-    <TextFieldComponent
-      label={"Name"}
-      defaultValue={"John Doe"}
-      required={true}
-    />
+    <TextFieldComponent label="Name" defaultValue="John Doe" required={true} />
   );
 
   const textElement = screen.getByText(/Name/i);
